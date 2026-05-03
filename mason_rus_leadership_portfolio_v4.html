@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mason Rus, Leadership Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #1d3557;
+    --accent-mid: #457b9d;
+    --accent-light: #e8f0f7;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-muted: #9ca3af;
+    --bg: #fafaf9;
+    --bg-card: #ffffff;
+    --border: #e5e7eb;
+    --border-light: #f3f4f6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(250,250,249,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  nav .brand {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-right: auto;
+    padding: 15px 0;
+    letter-spacing: -0.01em;
+  }
+  nav a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 15px 13px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+  nav a:hover { color: var(--text-primary); }
+  nav a.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* PAGES */
+  .page { display: none; padding: 2.5rem 2rem 4rem; max-width: 740px; margin: 0 auto; }
+  .page.active { display: block; }
+
+  /* HOME */
+  .home-hero {
+    padding: 2.5rem 0 2rem;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 2rem;
+  }
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .hero-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 2px solid var(--accent-light);
+    flex-shrink: 0;
+  }
+  .hero-text h1 {
+    font-family: 'Lora', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 3px;
+  }
+  .hero-text .subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .hero-bio {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 560px;
+  }
+
+  /* STAT ROW */
+  .stat-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg-card);
+  }
+  .stat-item {
+    flex: 1;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    border-right: 1px solid var(--border-light);
+    position: relative;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* NAV CARDS */
+  .nav-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .nav-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+  }
+  .nav-card:hover {
+    border-color: var(--accent-mid);
+    box-shadow: 0 2px 12px rgba(29,53,87,0.08);
+    transform: translateY(-1px);
+  }
+  .nav-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .nav-card-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .nav-card-arrow {
+    font-size: 13px;
+    color: var(--accent-mid);
+    margin-top: 6px;
+  }
+
+  /* INNER PAGES */
+  .page-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .page-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .card:hover {
+    border-color: #d1dce8;
+  }
+  .num {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--accent-mid);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.01em;
+  }
+  p {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 0.85rem;
+  }
+  p:last-child { margin-bottom: 0; }
+
+  /* PHILOSOPHY page, single long card gets special treatment */
+  #philosophy .card p { font-size: 15px; }
+
+  /* ACCENT LEFT BORDER on cards in journey/values */
+  #journey .card,
+  #values .card {
+    border-left: 3px solid var(--accent-light);
+  }
+  #journey .card:hover,
+  #values .card:hover {
+    border-left-color: var(--accent-mid);
+  }
+
+  /* RESUME */
+  .resume-doc {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem 2.25rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .r-header {
+    text-align: center;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid var(--accent);
+  }
+  .r-name {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .r-contact {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+  .r-section {
+    margin-bottom: 1.5rem;
+  }
+  .r-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent-light);
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+  }
+  .r-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .r-left { flex: 1; }
+  .r-right { text-align: right; flex-shrink: 0; }
+  .r-org {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .r-detail {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .r-label {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .r-place {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .r-date {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .r-list {
+    margin: 6px 0 0 1.1rem;
+    padding: 0;
+  }
+  .r-list li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 4px;
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Mason Rus</span>
+  <a href="#" class="active" onclick="show('home',this)">Home</a>
+  <a href="#" onclick="show('strengths',this)">Strengths</a>
+  <a href="#" onclick="show('values',this)">Values</a>
+  <a href="#" onclick="show('philosophy',this)">Philosophy</a>
+  <a href="#" onclick="show('journey',this)">Journey</a>
+  <a href="#" onclick="show('resume',this)">Resume</a>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="home-hero">
+    <div class="hero-inner">
+      <img src="data:image/jpeg;base64,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" class="hero-photo" alt="Mason Rus" />
+      <div class="hero-text">
+        <h1>Mason Rus</h1>
+        <div class="subtitle">Leadership Development Minor</div>
+      </div>
+    </div>
+    <p class="hero-bio">This portfolio reflects my leadership journey, the strengths I lead with, the values that guide me, the philosophy I've built, and the experiences that shaped who I am as a leader.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-item">
+      <span class="stat-num">5</span>
+      <span class="stat-label">Strengths</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">5</span>
+      <span class="stat-label">Core Values</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">5</span>
+      <span class="stat-label">Experiences</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Philosophy</span>
+    </div>
+  </div>
+
+  <div class="nav-grid">
+    <div class="nav-card" onclick="showById('strengths')">
+      <div class="nav-card-title">Strengths</div>
+      <div class="nav-card-sub">5 CliftonStrengths</div>
+      <div class="nav-card-arrow">→</div>
+    </div>
+    <div class="nav-card" onclick="showById('values')">
+      <div class="nav-card-title">Values</div>
+      <div class="nav-card-sub">5 core principles</div>
+      <div class="nav-card-arrow">→</div>
+    </div>
+    <div class="nav-card" onclick="showById('philosophy')">
+      <div class="nav-card-title">Philosophy</div>
+      <div class="nav-card-sub">How I lead</div>
+      <div class="nav-card-arrow">→</div>
+    </div>
+    <div class="nav-card" onclick="showById('journey')">
+      <div class="nav-card-title">Journey</div>
+      <div class="nav-card-sub">5 defining experiences</div>
+      <div class="nav-card-arrow">→</div>
+    </div>
+  </div>
+</div>
+
+<!-- STRENGTHS -->
+<div id="strengths" class="page">
+  <div class="page-header">
+    <h1>CliftonStrengths</h1>
+    <div class="page-subtitle">Top 5 strengths from my assessment</div>
+  </div>
+  <div class="card">
+    <div class="num">01</div>
+    <h2>Empathy</h2>
+    <p>Empathy is something I have always had naturally. I pick up on how people are feeling without them having to say much, and I lead with that awareness. Whether it is a teammate who is frustrated, a friend going through something, or a group that is not clicking, I tend to notice it first and try to respond in a way that makes people feel heard. In leadership settings, this makes me someone people actually come to when something is wrong, not just when things are going well.</p>
+    <p>The flip side is knowing where to draw the line. Taking on everyone else's emotions can wear you down, and I have had to learn how to be present for people without losing myself in the process. That balance is something I actively keep working on, and I think the ongoing effort to maintain it is part of what makes empathy a genuine strength rather than just a personality trait.</p>
+  </div>
+  <div class="card">
+    <div class="num">02</div>
+    <h2>Strategic</h2>
+    <p>I think in patterns. When there is a problem or a plan being made, I am usually already a few steps ahead, mapping out what could go wrong and thinking through different options before committing to one. This has been useful in team settings, especially when things feel chaotic and someone needs to step back and think clearly about the best path forward.</p>
+    <p>I have learned to share that thinking out loud rather than just acting on it, because not everyone can see what I am seeing. When I communicate my reasoning, it brings people with me instead of leaving them wondering why I am hesitant or pushing for a change in direction. The Strategic strength is most valuable when it is paired with transparency, and that is something I have become more intentional about developing over time. Thinking ahead only helps a team if the people around you can follow the reasoning and trust the direction.</p>
+  </div>
+  <div class="card">
+    <div class="num">03</div>
+    <h2>Communication</h2>
+    <p>Talking has never been hard for me. Whether it is speaking in front of a group, having a one-on-one conversation, or just holding a room, I am comfortable expressing ideas clearly and in a way that keeps people engaged. I enjoy being the one who can take a complicated situation and break it down simply so everyone understands what is going on.</p>
+    <p>The part I continue to develop is knowing when to stop talking and just listen. Communication is not one-sided, and the best conversations I have had are the ones where I stayed curious instead of just waiting to respond. I have come to believe that listening well is actually the harder skill, and working on it has made me a more effective communicator than any amount of public speaking practice could on its own. It is the part of communication that most people consistently underinvest in.</p>
+  </div>
+  <div class="card">
+    <div class="num">04</div>
+    <h2>Positivity</h2>
+    <p>I genuinely enjoy being around people and I tend to bring energy into a room. When things get tough or a team hits a rough patch, I am usually the one keeping the mood from going completely south. That is not forced. It is just how I am wired. I find something to work with in most situations and I try to help others see it too.</p>
+    <p>I have had to learn, though, that sometimes people need space to sit in a hard moment before they want someone pointing to the bright side. Real positivity means meeting people where they are first, acknowledging what is hard before looking for what is workable. That shift in approach has made my optimism feel more grounded and trustworthy to the people around me, rather than dismissive of what they are actually going through. Positivity lands differently when people know you have genuinely heard them first.</p>
+  </div>
+  <div class="card">
+    <div class="num">05</div>
+    <h2>Learner</h2>
+    <p>I am always trying to get better at something. Whether it is on the field, in the classroom, or just in how I carry myself, I am not satisfied staying where I am. I ask a lot of questions, pay attention to what works and what does not, and try to apply what I pick up. Learning is not something I do to check a box, it genuinely drives me.</p>
+    <p>The challenge is making sure that curiosity turns into action. Sometimes it is easy to keep absorbing without pausing to actually apply what you have learned. That is something I keep in mind as I grow. The Learner strength is only as valuable as what you do with what you take in, and I try to hold myself to that standard consistently rather than treating growth as something that happens passively. Learning without applying is just stored information.</p>
+  </div>
+</div>
+
+<!-- VALUES -->
+<div id="values" class="page">
+  <div class="page-header">
+    <h1>Core values</h1>
+    <div class="page-subtitle">The five principles that guide how I lead</div>
+  </div>
+  <div class="card">
+    <div class="num">01</div>
+    <h2>Integrity</h2>
+    <p>Doing the right thing when no one is watching is the standard I hold myself to. Integrity, for me, means being consistent, who I am in front of a coach, a professor, or a stranger should not change. I own my mistakes, keep my word, and try to make decisions I would be comfortable defending out loud. Over time, that consistency builds trust, and trust is the foundation of any kind of real leadership.</p>
+    <p>It is not always easy. There are moments where cutting a corner would be simpler. But I have seen what happens when people lead without integrity, and the damage it does to a team or a relationship is not worth it. That keeps me honest. Integrity is not a dramatic commitment you make once. It is a quiet, daily decision, and I think the accumulation of those small decisions is ultimately what defines a person's character.</p>
+  </div>
+  <div class="card">
+    <div class="num">02</div>
+    <h2>Service</h2>
+    <p>I was raised with the idea that you give back, and that has only gotten stronger as I have gotten older. Going on mission trips showed me what it looks like to show up for people with no agenda, just to help, to serve, to be present. That experience shaped how I think about leadership. The best leaders I have been around are not the ones chasing recognition. They are the ones making things easier for everyone around them.</p>
+    <p>Service also means sacrifice. Sometimes that looks like staying late, doing the unglamorous work, or putting the team's needs ahead of your own preferences. That is a standard I try to live up to consistently. What the mission trip made clear to me is that service is not a category of activity. It is an orientation toward other people, and when you lead from that place, the people around you feel it.</p>
+  </div>
+  <div class="card">
+    <div class="num">03</div>
+    <h2>Accountability</h2>
+    <p>Football taught me accountability before any classroom did. If you miss a block, the whole play falls apart. If you skip a film session, you get exposed on game day. There is nowhere to hide, and that is actually something I appreciate. Accountability means holding yourself to a standard regardless of whether anyone else is keeping track, and it means holding your teammates to one too, because that is how you actually respect them.</p>
+    <p>I try to bring that same mentality to everything I do. When something goes wrong on my watch, I say so. When I tell someone I will do something, I do it. That is the baseline. Accountability also means creating a culture where others feel safe holding themselves to the same standard, and I think the most effective way to build that culture is to model it without exception rather than demand it from others.</p>
+  </div>
+  <div class="card">
+    <div class="num">04</div>
+    <h2>Resilience</h2>
+    <p>Things do not always go the way you plan. Injuries, losses, setbacks in school, I have dealt with all of them, and each one taught me something about how I handle adversity. Resilience is not about pretending things do not hurt. It is about deciding to keep going anyway. Some of the growth I am most proud of came directly out of situations where I had every reason to fold and chose not to.</p>
+    <p>As a leader, this matters because the people around you take cues from how you respond when things go sideways. Staying level-headed and focused when it is hard is one of the most important things a leader can do for a team. I have learned that resilience is not something you either have or do not have. It is a muscle, and every setback you work through makes you more capable of handling the next one.</p>
+  </div>
+  <div class="card">
+    <div class="num">05</div>
+    <h2>Growth</h2>
+    <p>I am never the finished product. That is something I genuinely believe. There is always a better version of myself to work toward, whether that means becoming a sharper thinker, a more patient teammate, or a more effective communicator. I surround myself with people who push me, ask for feedback even when it is uncomfortable, and try to apply what I learn rather than just filing it away.</p>
+    <p>Growth also means being okay with not having all the answers. Admitting what you do not know is not weakness. It is the starting point for actually getting better. Some of the most important growth I have experienced came directly from moments of humility, where I had to set aside the need to appear capable and instead focus on actually becoming more capable. That willingness to stay in that uncomfortable space is something I think every leader has to develop intentionally.</p>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<div id="philosophy" class="page">
+  <div class="page-header">
+    <h1>Leadership philosophy</h1>
+    <div class="page-subtitle">How football, experience, and growth have shaped the way I lead</div>
+  </div>
+  <div class="card">
+    <p>Football taught me leadership before I had a name for it. From the time I started playing, I was learning how to earn trust, how to hold people accountable, how to bring energy on days when I did not feel like it, and how to compete alongside people who were counting on me. By the time I was named a team captain in high school, I understood that the role was not about being the loudest or the most talented, it was about being the most reliable. Showing up every day, setting the tone in practice, and making sure the guys around me felt like they had someone they could count on.</p>
+    <p>Football is a microcosm of life. The lessons you learn in a locker room apply everywhere: how to handle failure, how to build trust, how to lead by example, how to function as part of something bigger than yourself. When you lose a game you should have won, you learn how to process disappointment and come back ready to work. When you win because of a team effort, you understand what it feels like when everyone is genuinely bought in. Those experiences shaped my belief that leadership is fundamentally about people, not outcomes.</p>
+    <p>At the college level, I stepped into a different kind of leadership role. I was no longer the captain with a title, I was a vocal leader on and off the field, leading through relationships and credibility rather than a designation. That shift pushed me to grow. I had to earn influence every day through how I competed, how I treated people, and how I carried myself when things were hard. That is a standard I now hold onto in every environment I walk into.</p>
+    <p>Experience has been my best teacher. The things I know about leadership did not come from reading about it, they came from being in the room, making decisions under pressure, getting things wrong and figuring out why, and watching people I respected lead well. I believe strongly that you have to keep adding to that experience base throughout your life. The best leaders I know are still learning, still adjusting, still growing. That is the standard I am holding myself to going forward.</p>
+  </div>
+</div>
+
+<!-- JOURNEY -->
+<div id="journey" class="page">
+  <div class="page-header">
+    <h1>Leadership journey</h1>
+    <div class="page-subtitle">Five experiences that shaped who I am as a leader</div>
+  </div>
+  <div class="card">
+    <div class="num">01</div>
+    <h2>Being named team captain in high school</h2>
+    <p>Being named captain my senior year was one of the most meaningful things that happened to me in high school, not because of what it said about me, but because of what it asked of me. Suddenly, the standard I held myself to had to be visible. I could not have a bad attitude in practice and expect the younger guys to have a good one. I could not take plays off and then demand effort from someone else. The role made me more intentional about everything, from how I communicated to how I prepared.</p>
+    <p>That year taught me that leadership is less about what you say and more about what people see you do consistently. The teammates who followed my lead were not doing it because I had a title, they were doing it because they trusted me. Earning that trust, and not taking it for granted, is something I carried with me when I got to college.</p>
+  </div>
+  <div class="card">
+    <div class="num">02</div>
+    <h2>Going on a mission trip</h2>
+    <p>Volunteering on a mission trip changed how I think about service and why it matters. Being around people who were navigating real hardship, and still showing up with dignity and gratitude, was humbling in a way that is hard to put into words. It made me take a hard look at what I was doing with my time and my energy, and whether the way I was living matched the kind of person I wanted to be.</p>
+    <p>That experience made service a value I actually live by instead of just talk about. It also pushed me to think about leadership differently, not as something you do when people are watching, but as a commitment to showing up for others regardless of what you get out of it. That shift has stayed with me, and I carry it into every team environment I am a part of.</p>
+  </div>
+  <div class="card">
+    <div class="num">03</div>
+    <h2>Leading on and off the field in college</h2>
+    <p>In college, I did not always have a formal title, but I was still a leader. Being vocal in the locker room, holding teammates accountable in film sessions, staying positive during a tough stretch of the season, that is the kind of leadership that is harder to perform and easier to see through if it is not genuine. I had to earn credibility every week through how I competed and how I treated people, not through any designation.</p>
+    <p>That experience showed me what leadership looks like when the structure is removed. It is relational, it is daily, and it requires a level of consistency that is harder to maintain than most people expect. I grew more as a leader in that environment than I did with a captain's title, because there was nothing propping me up except how I actually showed up.</p>
+  </div>
+  <div class="card">
+    <div class="num">04</div>
+    <h2>Navigating a setback</h2>
+    <p>There was a point in my athletic career where things did not go the way I had planned. Whether it was an injury, a role change, or a season that did not pan out, I had to figure out how to respond to adversity in a way that did not drag my team down with me. That is harder than it sounds. When you are frustrated or disappointed, the natural instinct is to pull back or let it show.</p>
+    <p>What I learned is that how you handle a setback says more about your character than how you handle success. The people around you are watching, and a leader who goes quiet or turns negative when things get hard loses credibility fast. I focused on what I could control, stayed engaged, and tried to be useful in whatever way I could. That period shaped my resilience in a way that no success could have.</p>
+  </div>
+  <div class="card">
+    <div class="num">05</div>
+    <h2>Mentoring a younger player</h2>
+    <p>At some point in college, I became the veteran that younger players were looking to. Taking that seriously meant investing in people, answering questions, sharing what I had learned, and being honest about what the experience would actually require from them. There is something about passing knowledge down that forces you to reflect on what you actually believe and why.</p>
+    <p>Watching someone grow because you took time to invest in them is one of the most rewarding things I have experienced as a leader. It also made clear to me that leadership is not just about performing well yourself. It is about making the people around you better. That is the standard I want to carry forward, and mentoring gave me a concrete picture of what it looks like when a leader fully commits to the development of the people around them rather than just their own performance.</p>
+  </div>
+</div>
+
+
+<!-- RESUME -->
+<div id="resume" class="page">
+  <div class="page-header">
+    <h1>Resume</h1>
+    <div class="page-subtitle">Most up-to-date professional resume</div>
+  </div>
+
+  <div class="resume-doc">
+
+    <div class="r-header">
+      <div class="r-name">Mason M. Rus</div>
+      <div class="r-contact">10721 Blueberry Hill &nbsp;|&nbsp; Kirtland, OH 44094 &nbsp;|&nbsp; 440-226-1974 &nbsp;|&nbsp; mrus26@jcu.edu</div>
+    </div>
+
+    <div class="r-section">
+      <div class="r-section-title">Education</div>
+      <div class="r-row">
+        <div class="r-left">
+          <div class="r-org">John Carroll University</div>
+          <div class="r-detail">Bachelor of Science in Biology, Minor in Leadership and Chemistry</div>
+          <div class="r-detail">GPA: 3.30/4.00 &nbsp;|&nbsp; Dean's List</div>
+          <div class="r-detail" style="margin-top:6px"><span class="r-label">Relevant Coursework:</span> Organic Chemistry, Principles of Biology I/II/III, Genetics, General Chemistry, Biochemistry, Medical Physiology, French II, Leadership Coursework</div>
+          <div class="r-detail" style="margin-top:6px"><span class="r-label">Lab Skills:</span> Operated lab equipment including balances, evaporators, distillers, and chromatography systems; performed titrations, pH measurements, and solution prep; maintained lab records and followed safety protocols</div>
+        </div>
+        <div class="r-right">
+          <div class="r-place">University Heights, OH</div>
+          <div class="r-date">May 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-section">
+      <div class="r-section-title">On Campus Involvement</div>
+      <div class="r-row">
+        <div class="r-left">
+          <div class="r-org">John Carroll JV and Varsity Football</div>
+          <ul class="r-list">
+            <li>Participated in team-led volunteer initiatives to support local community programs and promote team values beyond athletics</li>
+            <li>Attended coach-led study halls to track academic progress and build strong connections with teammates</li>
+            <li>Engaged in regular one-on-one meetings with coaches to gain performance insights and strengthen staff relationships</li>
+            <li>Collaborated with coaches and teammates in meetings to evaluate performance, strategize game plans, and refine skills for continuous improvement</li>
+            <li>Integrated coaching feedback during practices to enhance teamwork and in-game communication</li>
+            <li>Monitored personal performance during workouts to progressively build strength and endurance</li>
+          </ul>
+        </div>
+        <div class="r-right">
+          <div class="r-date">August 2022 – Present</div>
+        </div>
+      </div>
+      <div class="r-row" style="margin-top:10px">
+        <div class="r-left">
+          <div class="r-org">Pre-Dental Society &nbsp;<span class="r-detail" style="font-weight:400">— Member</span></div>
+        </div>
+        <div class="r-right">
+          <div class="r-date">August 2022 – Present</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-section">
+      <div class="r-section-title">Professional Experience</div>
+      <div class="r-row"><div class="r-left"><div class="r-org">Shadowing Experience &nbsp;<span class="r-detail" style="font-weight:400">— Various Dental Practices</span></div></div><div class="r-right"><div class="r-date">June 2024 – Present</div></div></div>
+      <div class="r-row" style="margin-top:8px"><div class="r-left"><div class="r-org">Rus Custom Construction</div></div><div class="r-right"><div class="r-date">May 2021 – Present</div></div></div>
+      <div class="r-row" style="margin-top:8px"><div class="r-left"><div class="r-org">Highland Landscape Supply</div></div><div class="r-right"><div class="r-date">May 2020 – Present</div></div></div>
+      <div class="r-row" style="margin-top:8px"><div class="r-left"><div class="r-org">Massive Mulching &nbsp;<span class="r-detail" style="font-weight:400">— Landscaping Business</span></div></div><div class="r-right"><div class="r-date">Summer 2018, 2019</div></div></div>
+    </div>
+
+    <div class="r-section">
+      <div class="r-section-title">Honors and Awards</div>
+      <div class="r-row"><div class="r-left"><div class="r-org">Magis Scholarship</div></div><div class="r-right"><div class="r-date">March 2022 – Present</div></div></div>
+      <div class="r-row" style="margin-top:8px"><div class="r-left"><div class="r-org">Academic All-Ohio Athletic Conference</div></div><div class="r-right"><div class="r-date">Fall 2023</div></div></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function show(id, el) {
+  if (el) {
+    event.preventDefault();
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    el.classList.add('active');
+  }
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+function showById(id) {
+  const pages = ['home', 'strengths', 'values', 'philosophy', 'journey'];
+  const links = document.querySelectorAll('nav a');
+  const idx = pages.indexOf(id);
+  links.forEach(a => a.classList.remove('active'));
+  if (idx >= 0) links[idx + 1].classList.add('active');
+  show(id, null);
+}
+</script>
+</body>
+</html>
